@@ -1,9 +1,20 @@
-// Include packages related to server
+// Include packages related to server, database and view
 const express = require('express')
+const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
-const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
+const db = mongoose.connection
+db.on('error', () => {
+  console.error('MongoDB error!')
+})
+db.once('open', () => {
+  console.log('MongoDB connected!')
+})
 
 // Set view engine
 app.set('view engine', 'handlebars')
