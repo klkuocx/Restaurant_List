@@ -1,10 +1,10 @@
 // Include packages related to server, database and view
 const express = require('express')
 const mongoose = require('mongoose')
+const Restaurant = require('./models/restaurant')
 const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
-const restaurantList = require('./models/seeds/restaurant.json')
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -25,7 +25,10 @@ app.use(express.static('public'))
 
 // Set the server
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
 })
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
