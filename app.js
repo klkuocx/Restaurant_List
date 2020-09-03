@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
@@ -22,8 +23,9 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 
 // Set static files
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
-// Set the server
+// Set the route to index
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
@@ -31,11 +33,23 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// Set route to create restaurant
+app.get('/restaurants/new', (req, res) => res.render('new'))
+
+app.post('/restaurants/new', (req, res) => {
+  const restaurant = req.body
+  Restaurant.create(restaurant)
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
+// Set route to read detail
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
   res.render('show', { restaurant: restaurant })
 })
 
+// Set route to search restaurant
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()))
