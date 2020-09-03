@@ -8,7 +8,7 @@ const app = express()
 const port = 3000
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 const db = mongoose.connection
 db.on('error', () => {
   console.error('MongoDB error!')
@@ -44,11 +44,28 @@ app.post('/restaurants/new', (req, res) => {
 })
 
 // Set route to read detail
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const id = req.params.restaurant_id
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
   Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
+    .catch(error => console.error(error))
+})
+
+// Set routes to update restaurant info
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.error(error))
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const update = req.body
+  Restaurant.findByIdAndUpdate(id, update, { new: true })
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.error(error))
 })
 

@@ -1,0 +1,111 @@
+<div class="container-md py-5">
+
+  <div class="row">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">🍴餐廳資訊🥄</h5>
+          <hr>
+          <form method="POST" action="/restaurants/{{restaurant._id}}/edit" class="was-validated">
+            <div class="form-group form-row">
+              <label for="restaurant-name" class="col-md-4 col-form-label">
+                中文名稱
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name" class="form-control is-invalid" id="restaurant-name" placeholder="超美味蟹堡王"
+                  value="{{restaurant.name}}" required>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="restaurant-name_en" class="col-md-4 col-form-label">
+                英文名稱
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name_en" class="form-control is-invalid" id="restaurant-name_en"
+                  placeholder="Krusty Krab" value="{{restaurant.name_en}}" required>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="restaurant-category" class="col-md-4 col-form-label">
+                類型
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="category" class="form-control is-invalid" id="restaurant-category"
+                  placeholder="海底速食店" value="{{restaurant.category}}" required>
+                <small class="text-muted form-text">請輸入餐廳類型或料理類別，如：台式熱炒、美式餐廳、咖啡廳、酒吧等。</small>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="restaurant-image" class="col-md-4 col-form-label">
+                封面照片
+              </label>
+              <div class="col-md-8">
+                <input type="url" name="image" class="form-control is-invalid" id="restaurant-image"
+                  placeholder="https://vignette.wikia.nocookie.net/nickelodeon/images/6/6a/Krusty_Krab.jpg"
+                  value="{{restaurant.image}}" required>
+                <small class="text-muted form-text">任何具代表性的餐廳照片，請使用 URL 連結。</small>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="restaurant-location" class="col-md-4 col-form-label">
+                地址
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="location" class="form-control is-invalid" id="restaurant-location"
+                  placeholder="海底市 比奇堡區 砂石路九段 1 號" value="{{restaurant.location}}" required>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="restaurant-phone" class="col-md-4 col-form-label">
+                電話
+              </label>
+              <div class="col-md-8">
+                <input type="tel" name="phone" class="form-control is-invalid" id="restaurant-phone"
+                  placeholder="02 1234 5678" value="{{restaurant.phone}}" required>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="restaurant-google_map" class="col-md-4 col-form-label">
+                Google 地圖連結
+              </label>
+              <div class="col-md-8">
+                <input type="url" name="google_map" class="form-control is-invalid" id="restaurant-google_map"
+                  placeholder="https://goo.gl/maps/xxXXX0XxXXx" value="{{restaurant.google_map}}" required>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="restaurant-rating" class="col-md-4 col-form-label">
+                評分
+              </label>
+              <div class="col-md-8">
+                <input type="number" name="rating" class="form-control is-invalid" id="restaurant-rating"
+                  placeholder="4.7" value="{{restaurant.rating}}" step="0.1" min="0" max="5" required>
+                <small class="text-muted form-text">請輸入 0 ~ 5 的數字，也可參考 Google 商店的評分，至多小數點後一位。</small>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="restaurant-description" class="col-md-4 col-form-label">
+                簡介描述
+              </label>
+              <div class="col-md-8">
+                <textarea name="description" class="form-control is-invalid is-invalid" id="restaurant-description"
+                  placeholder="燈光美氣氛佳食物好吃服務到位" required>{{restaurant.description}}</textarea>
+                <small class="text-muted form-text">請輸入對此餐廳的認識，特色、招牌料理、獨家配方、裝潢風格、環境氣氛等。</small>
+              </div>
+            </div>
+
+            <button class="btn btn-success" type="submit">儲 存</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
