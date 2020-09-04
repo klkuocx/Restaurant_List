@@ -69,6 +69,15 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// Set route to delete restaurant
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
 // Set route to search restaurant
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword

@@ -38,8 +38,11 @@
               </span>
 
             </div>
-            <div class="card-footer">
-              <a href="/restaurants/{{this._id}}/edit" class="btn btn-primary">編輯</a>
+            <div class="card-footer d-flex justify-content-end">
+              <a href="/restaurants/{{this._id}}/edit" class="btn btn-primary mx-2" role="button">編 輯</a>
+              <form action="/restaurants/{{this._id}}/delete" method="POST">
+                <button type="submit" class="btn btn-danger">刪 除</button>
+              </form>
             </div>
           </div>
         </a>
