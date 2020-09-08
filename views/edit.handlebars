@@ -29,12 +29,24 @@
 
             <div class="form-group form-row">
               <label for="restaurant-category" class="col-md-4 col-form-label">
-                類型
+                餐點類型
               </label>
               <div class="col-md-8">
-                <input type="text" name="category" class="form-control is-invalid" id="restaurant-category"
-                  placeholder="海底速食店" value="{{restaurant.category}}" required>
-                <small class="text-muted form-text">請輸入餐廳類型或料理類別，如：台式熱炒、美式餐廳、咖啡廳、酒吧等。</small>
+                <select name="category" id="restaurant-category" class="custom-select" required>
+                  <option value="中式料理" {{#is restaurant.category "中式料理"}} selected {{/is}}>中式料理</option>
+                  <option value="台灣小吃" {{#is restaurant.category "台灣小吃"}} selected {{/is}}>台灣小吃</option>
+                  <option value="東南亞料理" {{#is restaurant.category "東南亞料理"}} selected {{/is}}>東南亞料理</option>
+                  <option value="中東料理" {{#is restaurant.category "中東料理"}} selected {{/is}}>中東料理</option>
+                  <option value="日韓料理" {{#is restaurant.category "日韓料理"}} selected {{/is}}>日韓料理</option>
+                  <option value="歐式餐廳" {{#is restaurant.category "歐式餐廳"}} selected {{/is}}>歐式餐廳</option>
+                  <option value="美式餐廳" {{#is restaurant.category "美式餐廳"}} selected {{/is}}>美式餐廳</option>
+                  <option value="蔬食餐廳" {{#is restaurant.category "蔬食餐廳"}} selected {{/is}}>蔬食餐廳</option>
+                  <option value="速食店" {{#is restaurant.category "速食店"}} selected {{/is}}>速食店</option>
+                  <option value="早午餐" {{#is restaurant.category "早午餐"}} selected {{/is}}>早午餐</option>
+                  <option value="咖啡廳" {{#is restaurant.category "咖啡廳"}} selected {{/is}}>咖啡廳</option>
+                  <option value="酒吧" {{#is restaurant.category "酒吧"}} selected {{/is}}>酒吧</option>
+                  <option value="其他" {{#is restaurant.category "其他"}} selected {{/is}}>其他</option>
+                </select>
               </div>
             </div>
 

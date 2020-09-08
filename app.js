@@ -3,6 +3,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
 const exphbs = require('express-handlebars')
+const hbshelpers = require('handlebars-helpers')
+const multihelpers = hbshelpers()
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
@@ -19,7 +21,7 @@ db.once('open', () => {
 
 // Set view engine
 app.set('view engine', 'handlebars')
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({ helpers: multihelpers, defaultLayout: 'main' }))
 
 // Set static files
 app.use(express.static('public'))

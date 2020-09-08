@@ -29,12 +29,25 @@
 
             <div class="form-group form-row">
               <label for="restaurant-category" class="col-md-4 col-form-label">
-                類型
+                餐點類型
               </label>
               <div class="col-md-8">
-                <input type="text" name="category" class="form-control is-invalid" id="restaurant-category"
-                  placeholder="海底速食店" required>
-                <small class="text-muted form-text">請輸入餐廳類型或料理類別，如：台式熱炒、美式餐廳、咖啡廳、酒吧等。</small>
+                <select name="category" id="restaurant-category" class="custom-select" required>
+                  <option value="">請選擇...</option>
+                  <option value="中式料理">中式料理</option>
+                  <option value="台灣小吃">台灣小吃</option>
+                  <option value="東南亞料理">東南亞料理</option>
+                  <option value="中東料理">中東料理</option>
+                  <option value="日韓料理">日韓料理</option>
+                  <option value="歐式餐廳">歐式餐廳</option>
+                  <option value="美式餐廳">美式餐廳</option>
+                  <option value="蔬食餐廳">蔬食餐廳</option>
+                  <option value="速食店">速食店</option>
+                  <option value="早午餐">早午餐</option>
+                  <option value="咖啡廳">咖啡廳</option>
+                  <option value="酒吧">酒吧</option>
+                  <option value="其他">其他</option>
+                </select>
               </div>
             </div>
 
