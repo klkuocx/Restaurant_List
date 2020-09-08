@@ -92,6 +92,18 @@ header {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+.fa-edit, .fa-trash {
+  color: #777;
+}
+
+.fa-edit:hover {
+  color: steelblue;
+}
+
+.fa-trash:hover {
+  color: red;
+}
+
 @media screen and (max-width: 992px) {
   
   .card img{
