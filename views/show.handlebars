@@ -1,10 +1,32 @@
 <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
 <div class="container">
   <div class="row mb-3 justify-content-end">
-    <a href="/restaurants/{{restaurant._id}}/edit" class="btn btn-primary" role="button">編 輯</a>
-    <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
-      <button type="submit" class="btn btn-danger  mx-3">刪 除</button>
-    </form>
+    <!-- Edit Button -->
+    <a href="/restaurants/{{restaurant._id}}/edit" class="btn btn-primary mx-1" role="button">編 輯</a>
+
+
+    <!-- Delete Button trigger modal -->
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{restaurant._id}}">
+      刪 除
+    </button>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal-{{restaurant._id}}" tabindex="-1" role="dialog"
+      aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <big class="modal-body">
+            確定要刪除 <strong>{{restaurant.name}}</strong> 嗎？
+          </big>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取 消</button>
+            <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
+              <button type="submit" class="btn btn-danger">確認刪除</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
