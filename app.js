@@ -92,6 +92,31 @@ app.get('/search', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// Set route to sort restaurants
+app.get('/sort', (req, res) => {
+  const sortBy = req.query.by
+  let byMethod = {}
+  switch (sortBy) {
+    case 'name-asc':
+      byMethod = { name: 'asc' }
+      break
+    case 'name-desc':
+      byMethod = { name: 'desc' }
+      break
+    case 'category':
+      byMethod = { category: 'asc' }
+      break
+    case 'location':
+      byMethod = { location: 'asc' }
+      break
+  }
+  Restaurant.find()
+    .lean()
+    .sort(byMethod)
+    .then(restaurants => res.render('index', { restaurants, sortBy }))
+    .catch(error => console.error(error))
+})
+
 // Listen to server
 app.listen(port, () => {
   console.log(`Server is listening on http://localhost:${port}`)
