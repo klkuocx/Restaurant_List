@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars')
 const hbshelpers = require('handlebars-helpers')
 const multihelpers = hbshelpers()
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const app = express()
 const port = 3000
 
@@ -26,6 +27,7 @@ app.engine('handlebars', exphbs({ helpers: multihelpers, defaultLayout: 'main' }
 // Set static files
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 // Set the route to index
 app.get('/', (req, res) => {
@@ -63,7 +65,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const update = req.body
   Restaurant.findByIdAndUpdate(id, update, { new: true })
@@ -72,7 +74,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // Set route to delete restaurant
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
     .then(restaurant => restaurant.remove())

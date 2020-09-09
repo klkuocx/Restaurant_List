@@ -6,7 +6,7 @@
         <div class="card-body">
           <h5 class="card-title">🍴餐廳資訊🥄</h5>
           <hr>
-          <form method="POST" action="/restaurants/{{restaurant._id}}/edit" class="was-validated">
+          <form method="POST" action="/restaurants/{{restaurant._id}}?_method=PUT" class="was-validated">
             <div class="form-group form-row">
               <label for="restaurant-name" class="col-md-4 col-form-label">
                 中文名稱
