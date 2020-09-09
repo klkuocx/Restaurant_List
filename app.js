@@ -1,24 +1,15 @@
-// Include packages related to server, database and view
+// Include packages
 const express = require('express')
-const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const hbshelpers = require('handlebars-helpers')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
+// Declare variables related to server and database
 const routes = require('./routes')
+require('./config/mongoose')
 const app = express()
 const port = 3000
-
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-const db = mongoose.connection
-db.on('error', () => {
-  console.error('MongoDB error!')
-})
-db.once('open', () => {
-  console.log('MongoDB connected!')
-})
 
 // Set view engine
 app.set('view engine', 'handlebars')
