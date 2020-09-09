@@ -7,6 +7,7 @@ A simple web application for **_epicure_ to manage favorite restaurants**
 - edit restaurant
 - delete restaurant
 - searching restaurants by name
+- sort restaurants by name, category and location
 
 ### Read
 Click restaurant card to see details
@@ -23,6 +24,8 @@ user can press "delete" button in index and detail page to delete restaurant
 ### Search
 search the restaurants by name
 
+### Sort
+select method to sort restaurants
 
 ## Environment SetUp
 1. [Node.js](https://nodejs.org/en/) 10.22.0
@@ -37,6 +40,7 @@ search the restaurants by name
 [~] $ cd ~/mongodb/bin/
 [~/mongodb/bin] $ ./mongod --dbpath ~/mongodb-data
 ```
+2. Create database name "restaurant-list"
 
 ### Activate Project
 1. Clone this git to local
