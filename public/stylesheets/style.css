@@ -67,6 +67,10 @@ header {
   height: 180px;
 }
 
+.restaurant-card:hover {
+  transform: scale(1.02);
+}
+
 .card-title{
   overflow:hidden;
   text-overflow:ellipsis;
