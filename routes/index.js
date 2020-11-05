@@ -1,20 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-// route of home page
 const home = require('./modules/home')
-router.use('/', home)
-
-// routes to CRUD restaurants
 const restaurants = require('./modules/restaurants')
-router.use('/restaurants', restaurants)
-
-// Set route to search restaurants
 const search = require('./modules/search')
-router.use('/search', search)
-
-// Set route to sort restaurants
 const sort = require('./modules/sort')
+const users = require('./modules/users')
+
+router.use('/restaurants', restaurants)
+router.use('/search', search)
 router.use('/sort', sort)
+router.use('/users', users)
+router.use('/', home)
 
 module.exports = router
