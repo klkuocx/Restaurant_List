@@ -24,9 +24,14 @@
         <a class="navbar-brand" href="/">
           <img src="https://image.flaticon.com/icons/svg/754/754989.svg" width="30" height="30"
             class="d-inline-block align-top" alt="餐廳清單">
+          {{#if isAuthenticated}}{{ user.name}}'s {{/if}}
           絕殺必吃餐廳清單
         </a>
-        <a href="/restaurants/new" id="create-btn" class="btn btn-primary" role="button" aria-pressed="true">新 增 餐 廳</a>
+        {{#if isAuthenticated}}
+        <a href="/users/logout" class="btn btn-outline-primary">Logout</a>
+        {{else}}
+        <a href="/users/login" class="btn btn-outline-primary">Login</a>
+        {{/if}}
       </div>
     </nav>
 
