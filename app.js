@@ -6,12 +6,14 @@ const useExphbs = require('./config/exphbs')
 const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 // Declare variables related to server and database
 const routes = require('./routes')
 require('./config/mongoose')
 const app = express()
-const port = 3000
 
 // Set middlewares
 useExphbs(app)
@@ -38,6 +40,6 @@ app.use((req, res, next) => {
 app.use(routes)
 
 // Listen to server
-app.listen(port, () => {
-  console.log(`Server is listening on http://localhost:${port}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Server is listening on http://localhost:${process.env.PORT}`)
 })
