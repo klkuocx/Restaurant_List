@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const hbshelpers = require('handlebars-helpers')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const usePassport = require('./config/passport')
 
 // Declare variables related to server and database
 const routes = require('./routes')
@@ -25,6 +26,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+usePassport(app)
 
 // Set the routes
 app.use(routes)
