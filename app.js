@@ -3,9 +3,11 @@ const express = require('express')
 const session = require('express-session')
 const exphbs = require('express-handlebars')
 const hbshelpers = require('handlebars-helpers')
+const comparison = hbshelpers.comparison()
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
+const flash = require('connect-flash')
 
 // Declare variables related to server and database
 const routes = require('./routes')
@@ -15,7 +17,7 @@ const port = 3000
 
 // Set view engine
 app.set('view engine', 'handlebars')
-app.engine('handlebars', exphbs({ helpers: hbshelpers(), defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({ helpers: comparison, defaultLayout: 'main' }))
 
 // Set middlewares
 app.use(express.static('public'))
@@ -27,9 +29,13 @@ app.use(session({
   saveUninitialized: true
 }))
 usePassport(app)
+app.use(flash())
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
+  res.locals.error = req.flash('error')
   next()
 })
 
