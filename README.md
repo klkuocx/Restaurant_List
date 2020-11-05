@@ -2,12 +2,16 @@
 A simple web application for **_epicure_ to manage favorite restaurants**
 
 ## Features
+- create an account to manage restaurant list
 - read the details of each restaurant
 - create new restaurant
 - edit restaurant
 - delete restaurant
 - searching restaurants by name
 - sort restaurants by name, category and location
+
+### Account
+create an account with your email or Facebook
 
 ### Read
 Click restaurant card to see details
