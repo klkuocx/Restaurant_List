@@ -5,6 +5,7 @@ const Restaurant = require('../../models/restaurant')
 
 // Set route to sort restaurants
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const sortBy = req.query.by
   let byMethod = {}
   switch (sortBy) {
@@ -21,7 +22,7 @@ router.get('/', (req, res) => {
       byMethod = { location: 'asc' }
       break
   }
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .sort(byMethod)
     .then(restaurants => res.render('index', { restaurants, sortBy }))

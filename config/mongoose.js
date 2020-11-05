@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 const db = mongoose.connection
 db.on('error', () => {
   console.error('MongoDB error!')
