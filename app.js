@@ -1,10 +1,8 @@
 // Include packages
 const express = require('express')
 const session = require('express-session')
-const exphbs = require('express-handlebars')
-const hbshelpers = require('handlebars-helpers')
-const comparison = hbshelpers.comparison()
 const bodyParser = require('body-parser')
+const useExphbs = require('./config/exphbs')
 const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
@@ -15,11 +13,8 @@ require('./config/mongoose')
 const app = express()
 const port = 3000
 
-// Set view engine
-app.set('view engine', 'handlebars')
-app.engine('handlebars', exphbs({ helpers: comparison, defaultLayout: 'main' }))
-
 // Set middlewares
+useExphbs(app)
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
